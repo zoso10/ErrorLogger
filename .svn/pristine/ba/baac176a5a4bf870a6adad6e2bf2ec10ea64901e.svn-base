@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="Lord.ActiveDirectoryTools.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <applicationSettings>
+        <Lord.ActiveDirectoryTools.Properties.Settings>
+            <setting name="AuthService" serializeAs="String">
+                <value>dXOu1NCB6i1W8q2/owV07boJnh57NdJY</value>
+            </setting>
+            <setting name="srvPDMAdmin" serializeAs="String">
+                <value>ltiV98129OtW8KA9T1CPGQ==</value>
+            </setting>
+            <setting name="lordAdmin" serializeAs="String">
+                <value>3/Pnjc6Gty4hAyDjUvgo3g==</value>
+            </setting>
+            <setting name="srvldap" serializeAs="String">
+                <value>FjeVUdCRobeLe/srDn9Z5DKgMMLdNhHk</value>
+            </setting>
+        </Lord.ActiveDirectoryTools.Properties.Settings>
+    </applicationSettings>
+</configuration>

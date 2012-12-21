@@ -1,0 +1,9 @@
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\bin\Debug\ErrorLoggerConsole1.exe
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\bin\Debug\ErrorLoggerConsole1.pdb
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\obj\x86\Debug\ErrorLoggerConsole1.exe
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\obj\x86\Debug\ErrorLoggerConsole1.pdb
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\bin\Debug\ErrorLoggerConsole1.exe.manifest
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\bin\Debug\ErrorLoggerConsole1.application
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\obj\x86\Debug\ErrorLoggerConsole1.exe.manifest
+c:\users\tyler_ewing\documents\visual studio 2010\Projects\ErrorLoggerConsole1\ErrorLoggerConsole1\obj\x86\Debug\ErrorLoggerConsole1.application

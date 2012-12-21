@@ -1,0 +1,6 @@
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\bin\Release\HD Space Tests.exe
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\bin\Release\HD Space Tests.pdb
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\obj\x86\Release\HD Space Tests.exe
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\obj\x86\Release\HD Space Tests.pdb
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\obj\x86\Release\HD Space Tests.csprojResolveAssemblyReference.cache
+C:\Users\Tyler_Ewing\Documents\Visual Studio 2010\Projects\error-logger\ErrorLoggerConsole1\HD Space Tests\bin\Release\HD Space Tests.exe.config

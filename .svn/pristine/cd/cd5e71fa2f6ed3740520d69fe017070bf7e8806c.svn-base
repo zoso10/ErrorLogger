@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ActiveDirectoryTools</name>
+    </assembly>
+    <members>
+        <member name="T:Lord.ActiveDirectoryTools.ADCache">
+            <summary>
+            Maintains a 1:1 relationship between storage containers so that lookups can be performed via multiple keys (GUID and NTName at the time of writing).
+            Currently, the mapping is as follows: NTName -> GUID -> ADUser.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADCache.DefaultHashTableSize">
+            <summary>
+            Approximate number of ADUsers that will need to be cached. This will be use to determine the initial size of the hashtables.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADCache.DefaultHashTableLoadFactor">
+            <summary>
+            The hashtables' max load factor setting. As per Wikipedia, lookup cost is nearly constant up to 0.7 load factor.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADCache.ADUserExpiration">
+            <summary>
+            The length of time ADUsers are valid. Expired ADUsers will be re-fetched. The check is performed upon lookup.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADCache.GuidToADUserCache">
+            <summary>
+            Provides ADUser lookup via GUID.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADCache.NTNameToGuidCache">
+            <summary>
+            Provides GUID lookup via NTName.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.AddToCache(Lord.ActiveDirectoryTools.ADEntity)">
+            <summary>
+            Adds the ADUser to the cache. Silently will not add if already exists.
+            </summary>
+            <param name="adr"></param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.FetchByNTName(System.String)">
+            <summary>
+            Fetches the ADUser by using NTName. Returns null if does not exist or is expired. If expired, removes from cache. Case-insensitive.
+            </summary>
+            <param name="NTName">Do not supply domain name prefix.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.FetchByGuid(System.String)">
+            <summary>
+            Fetches the ADUser by using objectGuid. Returns null if does not exist or is expired. If expired, removes from cache. Case-insensitive.
+            </summary>
+            <param name="objectGuid"></param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.Clear">
+            <summary>
+            Clears the cache.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.ValueAssign(Lord.ActiveDirectoryTools.ADCache)">
+            <summary>
+            Performs value-based assignment. Useful for when you do not want to change the reference.
+            </summary>
+            <param name="cache">The RHS part of the assignment.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.RemoveByGuid(System.String)">
+            <summary>
+            Removes a cached item.
+            </summary>
+            <param name="objectGuid"></param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCache.RemoveByNTName(System.String)">
+            <summary>
+            Removes a cached item.
+            </summary>
+            <param name="NTName"></param>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADCache.Instance">
+            <summary>
+            Returns the same instance of ADCache.
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADCache.Count">
+            <summary>
+            The number of items in the cache.
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.UserAccountControl">
+            <summary>
+            Flags for the userAccountControl property. http://msdn.microsoft.com/en-us/library/ms680832(VS.85).aspx
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_SCRIPT">
+            <summary>
+            The logon script is executed.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_ACCOUNTDISABLE">
+            <summary>
+            The user account is disabled.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_HOMEDIR_REQUIRED">
+            <summary>
+            The home directory is required.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_LOCKOUT">
+            <summary>
+            The account is currently locked out.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_PASSWD_NOTREQD">
+            <summary>
+            No password is required.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_PASSWD_CANT_CHANGE">
+            <summary>
+            The user cannot change the password.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED">
+            <summary>
+            The user can send an encrypted password.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_TEMP_DUPLICATE_ACCOUNT">
+            <summary>
+            This is an account for users whose primary account is in another domain. This account provides user access to this domain, but not to any domain that trusts this domain. Also known as a local user account.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_NORMAL_ACCOUNT">
+            <summary>
+            This is a default account type that represents a typical user.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_INTERDOMAIN_TRUST_ACCOUNT">
+            <summary>
+            This is a permit to trust account for a system domain that trusts other domains.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_WORKSTATION_TRUST_ACCOUNT">
+            <summary>
+            This is a computer account for a computer that is a member of this domain.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_SERVER_TRUST_ACCOUNT">
+            <summary>
+            This is a computer account for a system backup domain controller that is a member of this domain.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_DONT_EXPIRE_PASSWD">
+            <summary>
+            The password for this account will never expire.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_MNS_LOGON_ACCOUNT">
+            <summary>
+            This is an MNS logon account.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_SMARTCARD_REQUIRED">
+            <summary>
+            The user must log on using a smart card.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_TRUSTED_FOR_DELEGATION">
+            <summary>
+            The service account (user or computer account), under which a service runs, is trusted for Kerberos delegation. Any such service can impersonate a client requesting the service.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_NOT_DELEGATED">
+            <summary>
+            The security context of the user will not be delegated to a service even if the service account is set as trusted for Kerberos delegation.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_USE_DES_KEY_ONLY">
+            <summary>
+            Restrict this principal to use only Data Encryption Standard (DES) encryption types for keys.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_DONT_REQUIRE_PREAUTH">
+            <summary>
+            This account does not require Kerberos pre-authentication for logon.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_PASSWORD_EXPIRED">
+            <summary>
+            The user password has expired. This flag is created by the system using data from the Pwd-Last-Set attribute and the domain policy.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.UserAccountControl.ADS_UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION">
+            <summary>
+            The account is enabled for delegation. This is a security-sensitive setting; accounts with this option enabled should be strictly controlled. This setting enables a service running under the account to assume a client identity and authenticate as that user to other remote servers on the network.
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.LordDomains">
+            <summary>
+            The Lord domains. If one is missing, it can be added per request.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.LORD">
+            <summary>
+            LORD.LOCAL
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.MAIN">
+            <summary>
+            MAIN.LORD.COM
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.INTL">
+            <summary>
+            INTL.LORD.COM
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.SHANGHAI1">
+            <summary>
+            SHANGHAI1.LORD.COM
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.FRITTSHANNA">
+            <summary>
+            LOCAL.FRITTSHANNA.COM
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.LordDomains.DMZ">
+            <summary>
+            LORD.DMZ
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.ADHardDriveCache">
+            <summary>
+            Offers permanent storage in the way of hard drive, file-based storage.
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.ADCacheContainer">
+            <summary>
+            Abstract class. Specifies a wrapper for the basic form of caching.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCacheContainer.#ctor(Lord.ActiveDirectoryTools.ADCache)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCacheContainer.SaveCache">
+            <summary>
+            Saves the basic cache to a more permanent form.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCacheContainer.LoadCache">
+            <summary>
+            Loads the basic cache from a more permanent form.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADCacheContainer.ClearCache">
+            <summary>
+            Clears both the basic cache and its permanent form.
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADCacheContainer.Cache">
+            <summary>
+            The basic cache.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADHardDriveCache.CacheDirectory">
+            <summary>
+            The default file path for the serialized cache when saving to hard drive.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADHardDriveCache.CacheFileName">
+            <summary>
+            The default file name for the cache.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADHardDriveCache.#ctor(Lord.ActiveDirectoryTools.ADCache)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADHardDriveCache.SaveCache">
+            <summary>
+            Saves the cache in a serialized form to the path specified in DefaultCacheFilePath. Appends assembly version to file name.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADHardDriveCache.LoadCache">
+            <summary>
+            Loads the cache from its serialized form from the path specified in DefaultCacheFilePath.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADHardDriveCache.ClearCache">
+            <summary>
+            Clears both the basic cache and the serialized file on the hard drive.
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADHardDriveCache.CacheFilePath">
+            <summary>
+            The full path and file name of the cache file.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.SharedMethods.Guid2OctetString(System.String)">
+            <summary>
+            Converts GUID formatted string to Active Directory-friendly octet string. Expects properly formatted GUID.
+            </summary>
+            <param name="objectGuid">e.g. "15152bfd-2efe-4e04-baaa-6b2a975f6695"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.SharedMethods.New``1(System.Object[])">
+            <summary>
+            Provides a dynamic way of calling a constructor (with arguments). Nice because .NET doesn't allow it otherwise - it
+            causes an exception: "'T': cannot provide arguments when creating an instance of a variable". Yes, we can!
+            </summary>
+            <typeparam name="T">The type of the variable you'd like to call the constructor of.</typeparam>
+            <param name="paramList">Enter the parameters for the constructor here.</param>
+            <returns>A new instance of type T.</returns>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.ADEntity">
+            <summary>
+            A wrapper for System.DirectoryServices.DirectoryEntry. Represents a generic Active Directory entity.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADEntity.#ctor(System.DirectoryServices.DirectoryEntry)">
+            <summary>
+            Constructs a serializable version of a DirectoryEntry.
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADEntity.ObjectGuid">
+            <summary>
+            e.g. "15152bfd-2efe-4e04-baaa-6b2a975f6695"
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADEntity.AccountName">
+            <summary>
+            e.g. "james_jones"
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADEntity.DateInstantiated">
+            <summary>
+            When the object was instantiated. Active Directory could have changed since the object was created.
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADEntity.Properties">
+            <summary>
+            The property list returned from ActiveDirectory.
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.ADUser">
+            <summary>
+            A wrapper for System.DirectoryServices.DirectoryEntry. Represents a user.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADUser.#ctor">
+            <summary>
+            Constructs a basic ADUser.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADUser.ToString">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADUser.CompareTo(System.Object)">
+            <summary></summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADUser.NTName">
+            <summary>
+            e.g. "james_jones"
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADUser.DisplayName">
+            <summary>
+            e.g. "Jones, James"
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADUser.Email">
+            <summary>
+            e.g. "James_Jones@LORD.COM"
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADUser.CostCenter">
+            <summary>
+            e.g. "1001146"
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Lord.ActiveDirectoryTools.ADUser.Department" -->
+        <member name="P:Lord.ActiveDirectoryTools.ADUser.UAC">
+            <summary>
+            The User Account Control property.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADManager.searchRoot">
+            <summary>
+            The node in the Active Directory heirarchy where the search will start.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADManager.ldapSearch">
+            <summary>
+            Uses the search root to perform queries against Active Directory.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.#ctor(Lord.ActiveDirectoryTools.ADCache,Lord.ActiveDirectoryTools.LordDomains)">
+            <summary>
+            Initializes an object that can be used to perform lookups on user information.
+            </summary>
+            <param name="cache">ADCacheContainer is an abstract class, so you will need to use an implementation of it.</param>
+            <param name="domain">The domain that you want to perform the query against.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.#ctor(Lord.ActiveDirectoryTools.LordDomains)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.CreateUser(System.String)">
+            <summary>
+            Creates a new user in Active Directory.
+            </summary>
+            <param name="distinguishedName">Determines how the user will appear in Active Directory.
+            Do not specify domain-related information. Remember to give the user an account name, email, etc.
+            using the EditProperty function.
+            e.g. "CN=Jones\, James,OU=Users,OU=Grandview,OU=Domestic"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.CreateDMZUser(System.String)">
+            <summary>
+            Tries to create an AD user and if it already exists then it appends an integer to the last name
+            </summary>
+            <param name="distinguishedName">Determines how the user will appear in Active Directory.
+            Do not specify domain-related information. Remember to give the user an account name, email, etc.
+            using the EditProperty function.
+            e.g. "CN=Jones\, James,OU=Users,OU=Grandview,OU=Domestic"</param>
+            <returns>The created user</returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetAllUsers">
+            <summary>
+            Retrieves all users from Active Directory.
+            </summary>
+            <returns>An array of users.</returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntityByGuid``1(System.String)">
+            <summary>
+            Retrives entity info based on guid. Tries fetching from cache first. Case-insensitive. Throws FormatException. Returns null if no results found. Caches result.
+            </summary>
+            <param name="objectGuid">e.g. "15152bfd-2efe-4e04-baaa-6b2a975f6695"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntityByAccountName``1(System.String)">
+            <summary>
+            Retrieves entity info based on account name. Do not prefix with domain. Tries fetching from cache first. Case-insensitive. Returns null if no results found. Caches result.
+            </summary>
+            <param name="accountName">Account name, without domain. e.g. "james_jones"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntitiesByEmail``1(System.String)">
+            <summary>
+            Retrieves entity info based on account name. Do not prefix with domain. Does NOT try fetching from cache first. Case-insensitive. Caches results.
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntitiesByAttribute``1(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Attribute"></param>
+            <param name="SearchValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetUsersByAttribute(System.String,System.String)">
+            <summary>
+            Gathers a list of users that have an attribute set to the search value
+            </summary>
+            <param name="Attribute">Attribute to compare</param>
+            <param name="SearchValue">Search criteria</param>
+            <returns>List of ADUsers that have the attribute that contains the search value</returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntitiesByQuery``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="LDAPQuery"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Lord.ActiveDirectoryTools.ADManager.GetUsersByQuery(System.String)" -->
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.AuthenticateUser(System.String,System.String)">
+            <summary>
+            Authenticates a user. If authentication is successful, nothing will happen. If authentication fails, an exception will be thrown.
+            </summary>
+            <param name="userGuid">A user GUID</param>
+            <param name="password">User's password</param>
+            <returns>Error message if unable to authenticate otherwise an empty string</returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.GetEntitiesInGroupByName``1(System.String)">
+            <summary>
+            Retrieves the list of entities that belong to a particular group. Result is not cached.
+            </summary>
+            <param name="groupName">The group in question.</param>
+            <returns>A list of entities.</returns>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.AddEntityToGroup(System.String,System.String)">
+            <summary>
+            Adds an entity to a group in Active Directory.
+            </summary>
+            <param name="entityGuid">The GUID of the entity in question.</param>
+            <param name="groupGuid">The GUID of the group to assign the user to.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.RemoveEntityFromGroup(System.String,System.String)">
+            <summary>
+            Removes an entity from a group in Active Directory.
+            </summary>
+            <param name="entityGuid">The GUID of the entity in question.</param>
+            <param name="groupGuid">The GUID of the group that the entity is being removed from.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.SetProperty(System.String,System.String,System.Object)">
+            <summary>
+            Edits a user property.
+            </summary>
+            <param name="userGuid">The GUID of the user or group in question.</param>
+            <param name="propertyName">The user property to change.</param>
+            <param name="newValue">The new value to assign the property.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.ToggleUserAccountControl(System.String,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary>
+            Toggles a flag in the user account control property.
+            </summary>
+            <param name="userGuid">The GUID of the user in question.</param>
+            <param name="uac">The user account control property to toggle.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.ToggleUserAccountControl(Lord.ActiveDirectoryTools.ADUser,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.SetUserAccountControl(System.String,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary>
+            Sets a flag in the user account control property.
+            </summary>
+            <param name="userGuid">The GUID of the user in question.</param>
+            <param name="uac">The user account control property to toggle.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.SetUserAccountControl(Lord.ActiveDirectoryTools.ADUser,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.ClearUserAccountControl(System.String,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary>
+            Clears a flag in the user account control property.
+            </summary>
+            <param name="userGuid">The GUID of the user in question.</param>
+            <param name="uac">The user account control property to toggle.</param>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.ClearUserAccountControl(Lord.ActiveDirectoryTools.ADUser,Lord.ActiveDirectoryTools.UserAccountControl)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.SetPassword(System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.SetPassword(Lord.ActiveDirectoryTools.ADUser,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADManager.DeleteEntity(System.String)">
+            <summary>
+            Deletes an entity permanently from Active Directory.
+            </summary>
+            <param name="userGuid"></param>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADManager.Cache">
+            <summary>
+            The cache that will store ADUsers.
+            </summary>
+        </member>
+        <member name="P:Lord.ActiveDirectoryTools.ADManager.Domain">
+            <summary>
+            The domain to query against.
+            </summary>
+        </member>
+        <member name="T:Lord.ActiveDirectoryTools.ADWebCache">
+            <summary>
+            Offers permanent storage by utilizing the web application's cache.
+            </summary>
+        </member>
+        <member name="F:Lord.ActiveDirectoryTools.ADWebCache.DefaultCacheID">
+            <summary>
+            The default file name for the cache. Also used as key in Web caching.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADWebCache.#ctor(Lord.ActiveDirectoryTools.ADCache)">
+            <summary></summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADWebCache.SaveCache">
+            <summary>
+            Saves the cache to the web application's cache. Shared by all instances of the application.
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADWebCache.LoadCache">
+            <summary>
+            Loads the cache from the web application's cache. 
+            </summary>
+        </member>
+        <member name="M:Lord.ActiveDirectoryTools.ADWebCache.ClearCache">
+            <summary>
+            Clears both the basic cache and the web application's cache. Keep in mind that this does not work very well on a web farm.
+            </summary>
+        </member>
+    </members>
+</doc>

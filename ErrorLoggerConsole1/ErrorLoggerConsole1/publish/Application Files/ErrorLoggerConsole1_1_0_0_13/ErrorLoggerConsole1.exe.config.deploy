@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="configDirectory" value="C:\\ErrorLogger\\config.xml"/>
+    <add key="checkTime" value="10"/>
+    <add key="smtp" value="smtp.lord.local"/>
+    <add key="EmailFrom" value="Automated_Error_Logger--DO_NOT_REPLY@LORD.com"/>
+    <add key="HDReminderInterval" value="24"/>
+  </appSettings>
+<startup><supportedRuntime version="v2.0.50727"/></startup></configuration>

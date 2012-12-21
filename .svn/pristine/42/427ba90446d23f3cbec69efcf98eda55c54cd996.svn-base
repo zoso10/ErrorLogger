@@ -1,0 +1,404 @@
+﻿namespace ErrorLoggerFrontEnd
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.system_checkBox = new System.Windows.Forms.CheckBox();
+            this.security_checkBox = new System.Windows.Forms.CheckBox();
+            this.application_checkBox = new System.Windows.Forms.CheckBox();
+            this.logs_label = new System.Windows.Forms.Label();
+            this.customMessage_textBox = new System.Windows.Forms.TextBox();
+            this.customMessage_label = new System.Windows.Forms.Label();
+            this.servers_comboBox = new System.Windows.Forms.ComboBox();
+            this.server_label = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.recipients_listView = new System.Windows.Forms.ListView();
+            this.recipients_label = new System.Windows.Forms.Label();
+            this.remove_user_button = new System.Windows.Forms.Button();
+            this.add_user_button = new System.Windows.Forms.Button();
+            this.username_textBox = new System.Windows.Forms.TextBox();
+            this.username_label = new System.Windows.Forms.Label();
+            this.status_label = new System.Windows.Forms.Label();
+            this.status_message = new System.Windows.Forms.Label();
+            this.apply_button = new System.Windows.Forms.Button();
+            this.clear_button = new System.Windows.Forms.Button();
+            this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addServerToolStripMenuItem,
+            this.editServerToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // addServerToolStripMenuItem
+            // 
+            this.addServerToolStripMenuItem.Name = "addServerToolStripMenuItem";
+            this.addServerToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.addServerToolStripMenuItem.Text = "Add Server";
+            this.addServerToolStripMenuItem.Click += new System.EventHandler(this.addServerToolStripMenuItem_Click);
+            // 
+            // editServerToolStripMenuItem
+            // 
+            this.editServerToolStripMenuItem.Name = "editServerToolStripMenuItem";
+            this.editServerToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.editServerToolStripMenuItem.Text = "Edit Server";
+            this.editServerToolStripMenuItem.Click += new System.EventHandler(this.editServerToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getHelpToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // getHelpToolStripMenuItem
+            // 
+            this.getHelpToolStripMenuItem.Name = "getHelpToolStripMenuItem";
+            this.getHelpToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.getHelpToolStripMenuItem.Text = "Get Help";
+            this.getHelpToolStripMenuItem.Click += new System.EventHandler(this.getHelpToolStripMenuItem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.system_checkBox);
+            this.groupBox1.Controls.Add(this.security_checkBox);
+            this.groupBox1.Controls.Add(this.application_checkBox);
+            this.groupBox1.Controls.Add(this.logs_label);
+            this.groupBox1.Controls.Add(this.customMessage_textBox);
+            this.groupBox1.Controls.Add(this.customMessage_label);
+            this.groupBox1.Controls.Add(this.servers_comboBox);
+            this.groupBox1.Controls.Add(this.server_label);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(339, 410);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            // 
+            // system_checkBox
+            // 
+            this.system_checkBox.AutoSize = true;
+            this.system_checkBox.Location = new System.Drawing.Point(257, 104);
+            this.system_checkBox.Name = "system_checkBox";
+            this.system_checkBox.Size = new System.Drawing.Size(60, 17);
+            this.system_checkBox.TabIndex = 8;
+            this.system_checkBox.Text = "System";
+            this.system_checkBox.UseVisualStyleBackColor = true;
+            // 
+            // security_checkBox
+            // 
+            this.security_checkBox.AutoSize = true;
+            this.security_checkBox.Location = new System.Drawing.Point(142, 104);
+            this.security_checkBox.Name = "security_checkBox";
+            this.security_checkBox.Size = new System.Drawing.Size(64, 17);
+            this.security_checkBox.TabIndex = 6;
+            this.security_checkBox.Text = "Security";
+            this.security_checkBox.UseVisualStyleBackColor = true;
+            // 
+            // application_checkBox
+            // 
+            this.application_checkBox.AutoSize = true;
+            this.application_checkBox.Location = new System.Drawing.Point(20, 104);
+            this.application_checkBox.Name = "application_checkBox";
+            this.application_checkBox.Size = new System.Drawing.Size(78, 17);
+            this.application_checkBox.TabIndex = 5;
+            this.application_checkBox.Text = "Application";
+            this.application_checkBox.UseVisualStyleBackColor = true;
+            // 
+            // logs_label
+            // 
+            this.logs_label.AutoSize = true;
+            this.logs_label.Location = new System.Drawing.Point(17, 79);
+            this.logs_label.Name = "logs_label";
+            this.logs_label.Size = new System.Drawing.Size(33, 13);
+            this.logs_label.TabIndex = 4;
+            this.logs_label.Text = "Logs:";
+            // 
+            // customMessage_textBox
+            // 
+            this.customMessage_textBox.Location = new System.Drawing.Point(20, 169);
+            this.customMessage_textBox.Multiline = true;
+            this.customMessage_textBox.Name = "customMessage_textBox";
+            this.customMessage_textBox.Size = new System.Drawing.Size(297, 224);
+            this.customMessage_textBox.TabIndex = 3;
+            // 
+            // customMessage_label
+            // 
+            this.customMessage_label.AutoSize = true;
+            this.customMessage_label.Location = new System.Drawing.Point(17, 151);
+            this.customMessage_label.Name = "customMessage_label";
+            this.customMessage_label.Size = new System.Drawing.Size(137, 13);
+            this.customMessage_label.TabIndex = 2;
+            this.customMessage_label.Text = "Custom Message (optional):";
+            // 
+            // servers_comboBox
+            // 
+            this.servers_comboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.servers_comboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.servers_comboBox.FormattingEnabled = true;
+            this.servers_comboBox.Location = new System.Drawing.Point(20, 32);
+            this.servers_comboBox.Name = "servers_comboBox";
+            this.servers_comboBox.Size = new System.Drawing.Size(300, 21);
+            this.servers_comboBox.TabIndex = 1;
+            this.servers_comboBox.SelectedIndexChanged += new System.EventHandler(this.servers_comboBox_SelectedIndexChanged);
+            // 
+            // server_label
+            // 
+            this.server_label.AutoSize = true;
+            this.server_label.Location = new System.Drawing.Point(17, 16);
+            this.server_label.Name = "server_label";
+            this.server_label.Size = new System.Drawing.Size(41, 13);
+            this.server_label.TabIndex = 0;
+            this.server_label.Text = "Server:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.recipients_listView);
+            this.groupBox2.Controls.Add(this.recipients_label);
+            this.groupBox2.Controls.Add(this.remove_user_button);
+            this.groupBox2.Controls.Add(this.add_user_button);
+            this.groupBox2.Controls.Add(this.username_textBox);
+            this.groupBox2.Controls.Add(this.username_label);
+            this.groupBox2.Location = new System.Drawing.Point(369, 27);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(303, 393);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            // 
+            // recipients_listView
+            // 
+            this.recipients_listView.Location = new System.Drawing.Point(20, 125);
+            this.recipients_listView.MultiSelect = false;
+            this.recipients_listView.Name = "recipients_listView";
+            this.recipients_listView.Size = new System.Drawing.Size(265, 251);
+            this.recipients_listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.recipients_listView.TabIndex = 10;
+            this.recipients_listView.UseCompatibleStateImageBehavior = false;
+            this.recipients_listView.View = System.Windows.Forms.View.List;
+            this.recipients_listView.SelectedIndexChanged += new System.EventHandler(this.recipients_listView_SelectedIndexChanged);
+            // 
+            // recipients_label
+            // 
+            this.recipients_label.AutoSize = true;
+            this.recipients_label.Location = new System.Drawing.Point(17, 108);
+            this.recipients_label.Name = "recipients_label";
+            this.recipients_label.Size = new System.Drawing.Size(60, 13);
+            this.recipients_label.TabIndex = 4;
+            this.recipients_label.Text = "Recipients:";
+            // 
+            // remove_user_button
+            // 
+            this.remove_user_button.Location = new System.Drawing.Point(188, 69);
+            this.remove_user_button.Name = "remove_user_button";
+            this.remove_user_button.Size = new System.Drawing.Size(82, 23);
+            this.remove_user_button.TabIndex = 3;
+            this.remove_user_button.Text = "Remove User";
+            this.remove_user_button.UseVisualStyleBackColor = true;
+            this.remove_user_button.Click += new System.EventHandler(this.remove_user_button_Click);
+            // 
+            // add_user_button
+            // 
+            this.add_user_button.Location = new System.Drawing.Point(20, 69);
+            this.add_user_button.Name = "add_user_button";
+            this.add_user_button.Size = new System.Drawing.Size(75, 23);
+            this.add_user_button.TabIndex = 2;
+            this.add_user_button.Text = "Add User";
+            this.add_user_button.UseVisualStyleBackColor = true;
+            this.add_user_button.Click += new System.EventHandler(this.add_user_button_Click);
+            // 
+            // username_textBox
+            // 
+            this.username_textBox.Location = new System.Drawing.Point(20, 33);
+            this.username_textBox.Name = "username_textBox";
+            this.username_textBox.Size = new System.Drawing.Size(250, 20);
+            this.username_textBox.TabIndex = 1;
+            this.username_textBox.TextChanged += new System.EventHandler(this.username_textBox_TextChanged);
+            this.username_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.username_textBox_KeyDown);
+            // 
+            // username_label
+            // 
+            this.username_label.AutoSize = true;
+            this.username_label.Location = new System.Drawing.Point(17, 16);
+            this.username_label.Name = "username_label";
+            this.username_label.Size = new System.Drawing.Size(58, 13);
+            this.username_label.TabIndex = 0;
+            this.username_label.Text = "Username:";
+            // 
+            // status_label
+            // 
+            this.status_label.AutoSize = true;
+            this.status_label.Location = new System.Drawing.Point(12, 440);
+            this.status_label.Name = "status_label";
+            this.status_label.Size = new System.Drawing.Size(40, 13);
+            this.status_label.TabIndex = 3;
+            this.status_label.Text = "Status:";
+            // 
+            // status_message
+            // 
+            this.status_message.AutoSize = true;
+            this.status_message.Location = new System.Drawing.Point(58, 440);
+            this.status_message.Name = "status_message";
+            this.status_message.Size = new System.Drawing.Size(64, 13);
+            this.status_message.TabIndex = 4;
+            this.status_message.Text = "                   ";
+            // 
+            // apply_button
+            // 
+            this.apply_button.Location = new System.Drawing.Point(597, 427);
+            this.apply_button.Name = "apply_button";
+            this.apply_button.Size = new System.Drawing.Size(75, 23);
+            this.apply_button.TabIndex = 5;
+            this.apply_button.Text = "Apply";
+            this.apply_button.UseVisualStyleBackColor = true;
+            this.apply_button.Click += new System.EventHandler(this.apply_button_Click);
+            // 
+            // clear_button
+            // 
+            this.clear_button.Location = new System.Drawing.Point(491, 427);
+            this.clear_button.Name = "clear_button";
+            this.clear_button.Size = new System.Drawing.Size(75, 23);
+            this.clear_button.TabIndex = 6;
+            this.clear_button.Text = "Clear";
+            this.clear_button.UseVisualStyleBackColor = true;
+            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(684, 462);
+            this.Controls.Add(this.clear_button);
+            this.Controls.Add(this.apply_button);
+            this.Controls.Add(this.status_message);
+            this.Controls.Add(this.status_label);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
+            this.Text = "ErrorLogger Control Panel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getHelpToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox customMessage_textBox;
+        private System.Windows.Forms.Label customMessage_label;
+        private System.Windows.Forms.ComboBox servers_comboBox;
+        private System.Windows.Forms.Label server_label;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label recipients_label;
+        private System.Windows.Forms.Button remove_user_button;
+        private System.Windows.Forms.Button add_user_button;
+        private System.Windows.Forms.TextBox username_textBox;
+        private System.Windows.Forms.Label username_label;
+        private System.Windows.Forms.Label status_label;
+        private System.Windows.Forms.Label status_message;
+        private System.Windows.Forms.Button apply_button;
+        private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.ListView recipients_listView;
+        private System.Windows.Forms.CheckBox system_checkBox;
+        private System.Windows.Forms.CheckBox security_checkBox;
+        private System.Windows.Forms.CheckBox application_checkBox;
+        private System.Windows.Forms.Label logs_label;
+    }
+}
+

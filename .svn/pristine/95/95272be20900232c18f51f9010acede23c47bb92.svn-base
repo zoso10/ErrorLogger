@@ -1,0 +1,400 @@
+﻿namespace ErrorLoggerFrontEnd
+{
+    partial class EditAdd_Servers
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.edit_add_tabControl = new System.Windows.Forms.TabControl();
+            this.add_servers_page = new System.Windows.Forms.TabPage();
+            this.add_button = new System.Windows.Forms.Button();
+            this.ping_button = new System.Windows.Forms.Button();
+            this.status_add_message = new System.Windows.Forms.Label();
+            this.application_add_textBox = new System.Windows.Forms.TextBox();
+            this.group_add_textBox = new System.Windows.Forms.TextBox();
+            this.nickname_add_textBox = new System.Windows.Forms.TextBox();
+            this.server_name_add_textBox = new System.Windows.Forms.TextBox();
+            this.status_add_label = new System.Windows.Forms.Label();
+            this.application_add_label = new System.Windows.Forms.Label();
+            this.group_add_label = new System.Windows.Forms.Label();
+            this.nickname_add_label = new System.Windows.Forms.Label();
+            this.server_name_add_label = new System.Windows.Forms.Label();
+            this.edit_servers_page = new System.Windows.Forms.TabPage();
+            this.server_edit_comboBox = new System.Windows.Forms.ComboBox();
+            this.delete_button = new System.Windows.Forms.Button();
+            this.apply_button = new System.Windows.Forms.Button();
+            this.status_edit_message = new System.Windows.Forms.Label();
+            this.application_edit_textBox = new System.Windows.Forms.TextBox();
+            this.group_edit_textBox = new System.Windows.Forms.TextBox();
+            this.nickname_edit_textBox = new System.Windows.Forms.TextBox();
+            this.status_edit_label = new System.Windows.Forms.Label();
+            this.application_edit_label = new System.Windows.Forms.Label();
+            this.group_edit_label = new System.Windows.Forms.Label();
+            this.nickname_edit_label = new System.Windows.Forms.Label();
+            this.server_edit_label = new System.Windows.Forms.Label();
+            this.cancel_button = new System.Windows.Forms.Button();
+            this.ok_button = new System.Windows.Forms.Button();
+            this.edit_add_tabControl.SuspendLayout();
+            this.add_servers_page.SuspendLayout();
+            this.edit_servers_page.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // edit_add_tabControl
+            // 
+            this.edit_add_tabControl.Controls.Add(this.add_servers_page);
+            this.edit_add_tabControl.Controls.Add(this.edit_servers_page);
+            this.edit_add_tabControl.Location = new System.Drawing.Point(0, 0);
+            this.edit_add_tabControl.Name = "edit_add_tabControl";
+            this.edit_add_tabControl.SelectedIndex = 0;
+            this.edit_add_tabControl.Size = new System.Drawing.Size(535, 319);
+            this.edit_add_tabControl.TabIndex = 0;
+            // 
+            // add_servers_page
+            // 
+            this.add_servers_page.Controls.Add(this.add_button);
+            this.add_servers_page.Controls.Add(this.ping_button);
+            this.add_servers_page.Controls.Add(this.status_add_message);
+            this.add_servers_page.Controls.Add(this.application_add_textBox);
+            this.add_servers_page.Controls.Add(this.group_add_textBox);
+            this.add_servers_page.Controls.Add(this.nickname_add_textBox);
+            this.add_servers_page.Controls.Add(this.server_name_add_textBox);
+            this.add_servers_page.Controls.Add(this.status_add_label);
+            this.add_servers_page.Controls.Add(this.application_add_label);
+            this.add_servers_page.Controls.Add(this.group_add_label);
+            this.add_servers_page.Controls.Add(this.nickname_add_label);
+            this.add_servers_page.Controls.Add(this.server_name_add_label);
+            this.add_servers_page.Location = new System.Drawing.Point(4, 22);
+            this.add_servers_page.Name = "add_servers_page";
+            this.add_servers_page.Padding = new System.Windows.Forms.Padding(3);
+            this.add_servers_page.Size = new System.Drawing.Size(527, 293);
+            this.add_servers_page.TabIndex = 0;
+            this.add_servers_page.Text = "Add Server";
+            this.add_servers_page.UseVisualStyleBackColor = true;
+            // 
+            // add_button
+            // 
+            this.add_button.Location = new System.Drawing.Point(255, 237);
+            this.add_button.Name = "add_button";
+            this.add_button.Size = new System.Drawing.Size(75, 23);
+            this.add_button.TabIndex = 11;
+            this.add_button.Text = "Add";
+            this.add_button.UseVisualStyleBackColor = true;
+            this.add_button.Click += new System.EventHandler(this.add_button_Click);
+            // 
+            // ping_button
+            // 
+            this.ping_button.Location = new System.Drawing.Point(155, 237);
+            this.ping_button.Name = "ping_button";
+            this.ping_button.Size = new System.Drawing.Size(75, 23);
+            this.ping_button.TabIndex = 10;
+            this.ping_button.Text = "Ping";
+            this.ping_button.UseVisualStyleBackColor = true;
+            this.ping_button.Click += new System.EventHandler(this.ping_button_Click);
+            // 
+            // status_add_message
+            // 
+            this.status_add_message.AutoSize = true;
+            this.status_add_message.Location = new System.Drawing.Point(100, 189);
+            this.status_add_message.Name = "status_add_message";
+            this.status_add_message.Size = new System.Drawing.Size(52, 13);
+            this.status_add_message.TabIndex = 9;
+            this.status_add_message.Text = "               ";
+            // 
+            // application_add_textBox
+            // 
+            this.application_add_textBox.Location = new System.Drawing.Point(103, 144);
+            this.application_add_textBox.Name = "application_add_textBox";
+            this.application_add_textBox.Size = new System.Drawing.Size(227, 20);
+            this.application_add_textBox.TabIndex = 8;
+            // 
+            // group_add_textBox
+            // 
+            this.group_add_textBox.Location = new System.Drawing.Point(103, 105);
+            this.group_add_textBox.Name = "group_add_textBox";
+            this.group_add_textBox.Size = new System.Drawing.Size(227, 20);
+            this.group_add_textBox.TabIndex = 7;
+            // 
+            // nickname_add_textBox
+            // 
+            this.nickname_add_textBox.Location = new System.Drawing.Point(103, 64);
+            this.nickname_add_textBox.Name = "nickname_add_textBox";
+            this.nickname_add_textBox.Size = new System.Drawing.Size(227, 20);
+            this.nickname_add_textBox.TabIndex = 6;
+            // 
+            // server_name_add_textBox
+            // 
+            this.server_name_add_textBox.Location = new System.Drawing.Point(103, 22);
+            this.server_name_add_textBox.Name = "server_name_add_textBox";
+            this.server_name_add_textBox.Size = new System.Drawing.Size(227, 20);
+            this.server_name_add_textBox.TabIndex = 5;
+            this.server_name_add_textBox.TextChanged += new System.EventHandler(this.server_name_add_textBox_TextChanged);
+            this.server_name_add_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.server_name_add_textBox_KeyDown);
+            // 
+            // status_add_label
+            // 
+            this.status_add_label.AutoSize = true;
+            this.status_add_label.Location = new System.Drawing.Point(8, 189);
+            this.status_add_label.Name = "status_add_label";
+            this.status_add_label.Size = new System.Drawing.Size(40, 13);
+            this.status_add_label.TabIndex = 4;
+            this.status_add_label.Text = "Status:";
+            // 
+            // application_add_label
+            // 
+            this.application_add_label.AutoSize = true;
+            this.application_add_label.Location = new System.Drawing.Point(8, 147);
+            this.application_add_label.Name = "application_add_label";
+            this.application_add_label.Size = new System.Drawing.Size(59, 13);
+            this.application_add_label.TabIndex = 3;
+            this.application_add_label.Text = "Application";
+            // 
+            // group_add_label
+            // 
+            this.group_add_label.AutoSize = true;
+            this.group_add_label.Location = new System.Drawing.Point(8, 108);
+            this.group_add_label.Name = "group_add_label";
+            this.group_add_label.Size = new System.Drawing.Size(39, 13);
+            this.group_add_label.TabIndex = 2;
+            this.group_add_label.Text = "Group:";
+            // 
+            // nickname_add_label
+            // 
+            this.nickname_add_label.AutoSize = true;
+            this.nickname_add_label.Location = new System.Drawing.Point(8, 67);
+            this.nickname_add_label.Name = "nickname_add_label";
+            this.nickname_add_label.Size = new System.Drawing.Size(58, 13);
+            this.nickname_add_label.TabIndex = 1;
+            this.nickname_add_label.Text = "Nickname:";
+            // 
+            // server_name_add_label
+            // 
+            this.server_name_add_label.AutoSize = true;
+            this.server_name_add_label.Location = new System.Drawing.Point(8, 25);
+            this.server_name_add_label.Name = "server_name_add_label";
+            this.server_name_add_label.Size = new System.Drawing.Size(72, 13);
+            this.server_name_add_label.TabIndex = 0;
+            this.server_name_add_label.Text = "Server Name:";
+            // 
+            // edit_servers_page
+            // 
+            this.edit_servers_page.Controls.Add(this.server_edit_comboBox);
+            this.edit_servers_page.Controls.Add(this.delete_button);
+            this.edit_servers_page.Controls.Add(this.apply_button);
+            this.edit_servers_page.Controls.Add(this.status_edit_message);
+            this.edit_servers_page.Controls.Add(this.application_edit_textBox);
+            this.edit_servers_page.Controls.Add(this.group_edit_textBox);
+            this.edit_servers_page.Controls.Add(this.nickname_edit_textBox);
+            this.edit_servers_page.Controls.Add(this.status_edit_label);
+            this.edit_servers_page.Controls.Add(this.application_edit_label);
+            this.edit_servers_page.Controls.Add(this.group_edit_label);
+            this.edit_servers_page.Controls.Add(this.nickname_edit_label);
+            this.edit_servers_page.Controls.Add(this.server_edit_label);
+            this.edit_servers_page.Location = new System.Drawing.Point(4, 22);
+            this.edit_servers_page.Name = "edit_servers_page";
+            this.edit_servers_page.Padding = new System.Windows.Forms.Padding(3);
+            this.edit_servers_page.Size = new System.Drawing.Size(527, 293);
+            this.edit_servers_page.TabIndex = 1;
+            this.edit_servers_page.Text = "Edit Server";
+            this.edit_servers_page.UseVisualStyleBackColor = true;
+            // 
+            // server_edit_comboBox
+            // 
+            this.server_edit_comboBox.FormattingEnabled = true;
+            this.server_edit_comboBox.Location = new System.Drawing.Point(103, 22);
+            this.server_edit_comboBox.Name = "server_edit_comboBox";
+            this.server_edit_comboBox.Size = new System.Drawing.Size(262, 21);
+            this.server_edit_comboBox.TabIndex = 23;
+            this.server_edit_comboBox.TextChanged += new System.EventHandler(this.server_edit_comboBox_TextChanged);
+            this.server_edit_comboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.server_edit_comboBox_KeyDown);
+            // 
+            // delete_button
+            // 
+            this.delete_button.Location = new System.Drawing.Point(155, 237);
+            this.delete_button.Name = "delete_button";
+            this.delete_button.Size = new System.Drawing.Size(75, 23);
+            this.delete_button.TabIndex = 22;
+            this.delete_button.Text = "Delete";
+            this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
+            // 
+            // apply_button
+            // 
+            this.apply_button.Location = new System.Drawing.Point(255, 237);
+            this.apply_button.Name = "apply_button";
+            this.apply_button.Size = new System.Drawing.Size(75, 23);
+            this.apply_button.TabIndex = 21;
+            this.apply_button.Text = "Apply";
+            this.apply_button.UseVisualStyleBackColor = true;
+            this.apply_button.Click += new System.EventHandler(this.apply_button_Click);
+            // 
+            // status_edit_message
+            // 
+            this.status_edit_message.AutoSize = true;
+            this.status_edit_message.Location = new System.Drawing.Point(100, 189);
+            this.status_edit_message.Name = "status_edit_message";
+            this.status_edit_message.Size = new System.Drawing.Size(55, 13);
+            this.status_edit_message.TabIndex = 19;
+            this.status_edit_message.Text = "                ";
+            // 
+            // application_edit_textBox
+            // 
+            this.application_edit_textBox.Location = new System.Drawing.Point(103, 144);
+            this.application_edit_textBox.Name = "application_edit_textBox";
+            this.application_edit_textBox.Size = new System.Drawing.Size(227, 20);
+            this.application_edit_textBox.TabIndex = 18;
+            // 
+            // group_edit_textBox
+            // 
+            this.group_edit_textBox.Location = new System.Drawing.Point(103, 105);
+            this.group_edit_textBox.Name = "group_edit_textBox";
+            this.group_edit_textBox.Size = new System.Drawing.Size(227, 20);
+            this.group_edit_textBox.TabIndex = 17;
+            // 
+            // nickname_edit_textBox
+            // 
+            this.nickname_edit_textBox.Location = new System.Drawing.Point(103, 64);
+            this.nickname_edit_textBox.Name = "nickname_edit_textBox";
+            this.nickname_edit_textBox.Size = new System.Drawing.Size(227, 20);
+            this.nickname_edit_textBox.TabIndex = 16;
+            // 
+            // status_edit_label
+            // 
+            this.status_edit_label.AutoSize = true;
+            this.status_edit_label.Location = new System.Drawing.Point(8, 189);
+            this.status_edit_label.Name = "status_edit_label";
+            this.status_edit_label.Size = new System.Drawing.Size(40, 13);
+            this.status_edit_label.TabIndex = 14;
+            this.status_edit_label.Text = "Status:";
+            // 
+            // application_edit_label
+            // 
+            this.application_edit_label.AutoSize = true;
+            this.application_edit_label.Location = new System.Drawing.Point(8, 147);
+            this.application_edit_label.Name = "application_edit_label";
+            this.application_edit_label.Size = new System.Drawing.Size(59, 13);
+            this.application_edit_label.TabIndex = 13;
+            this.application_edit_label.Text = "Application";
+            // 
+            // group_edit_label
+            // 
+            this.group_edit_label.AutoSize = true;
+            this.group_edit_label.Location = new System.Drawing.Point(8, 108);
+            this.group_edit_label.Name = "group_edit_label";
+            this.group_edit_label.Size = new System.Drawing.Size(39, 13);
+            this.group_edit_label.TabIndex = 12;
+            this.group_edit_label.Text = "Group:";
+            // 
+            // nickname_edit_label
+            // 
+            this.nickname_edit_label.AutoSize = true;
+            this.nickname_edit_label.Location = new System.Drawing.Point(8, 67);
+            this.nickname_edit_label.Name = "nickname_edit_label";
+            this.nickname_edit_label.Size = new System.Drawing.Size(58, 13);
+            this.nickname_edit_label.TabIndex = 11;
+            this.nickname_edit_label.Text = "Nickname:";
+            // 
+            // server_edit_label
+            // 
+            this.server_edit_label.AutoSize = true;
+            this.server_edit_label.Location = new System.Drawing.Point(8, 25);
+            this.server_edit_label.Name = "server_edit_label";
+            this.server_edit_label.Size = new System.Drawing.Size(41, 13);
+            this.server_edit_label.TabIndex = 10;
+            this.server_edit_label.Text = "Server:";
+            // 
+            // cancel_button
+            // 
+            this.cancel_button.Location = new System.Drawing.Point(447, 327);
+            this.cancel_button.Name = "cancel_button";
+            this.cancel_button.Size = new System.Drawing.Size(75, 23);
+            this.cancel_button.TabIndex = 1;
+            this.cancel_button.Text = "Cancel";
+            this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
+            // 
+            // ok_button
+            // 
+            this.ok_button.Location = new System.Drawing.Point(352, 327);
+            this.ok_button.Name = "ok_button";
+            this.ok_button.Size = new System.Drawing.Size(75, 23);
+            this.ok_button.TabIndex = 2;
+            this.ok_button.Text = "OK";
+            this.ok_button.UseVisualStyleBackColor = true;
+            this.ok_button.Click += new System.EventHandler(this.ok_button_Click);
+            // 
+            // EditAdd_Servers
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(534, 362);
+            this.Controls.Add(this.ok_button);
+            this.Controls.Add(this.cancel_button);
+            this.Controls.Add(this.edit_add_tabControl);
+            this.Name = "EditAdd_Servers";
+            this.Text = "EditAdd_Servers";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditAdd_Servers_FormClosing);
+            this.edit_add_tabControl.ResumeLayout(false);
+            this.add_servers_page.ResumeLayout(false);
+            this.add_servers_page.PerformLayout();
+            this.edit_servers_page.ResumeLayout(false);
+            this.edit_servers_page.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabControl edit_add_tabControl;
+        private System.Windows.Forms.TabPage add_servers_page;
+        private System.Windows.Forms.TabPage edit_servers_page;
+        private System.Windows.Forms.Button cancel_button;
+        private System.Windows.Forms.Button ok_button;
+        private System.Windows.Forms.Button add_button;
+        private System.Windows.Forms.Button ping_button;
+        private System.Windows.Forms.Label status_add_message;
+        private System.Windows.Forms.TextBox application_add_textBox;
+        private System.Windows.Forms.TextBox group_add_textBox;
+        private System.Windows.Forms.TextBox nickname_add_textBox;
+        private System.Windows.Forms.TextBox server_name_add_textBox;
+        private System.Windows.Forms.Label status_add_label;
+        private System.Windows.Forms.Label application_add_label;
+        private System.Windows.Forms.Label group_add_label;
+        private System.Windows.Forms.Label nickname_add_label;
+        private System.Windows.Forms.Label server_name_add_label;
+        private System.Windows.Forms.ComboBox server_edit_comboBox;
+        private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button apply_button;
+        private System.Windows.Forms.Label status_edit_message;
+        private System.Windows.Forms.TextBox application_edit_textBox;
+        private System.Windows.Forms.TextBox group_edit_textBox;
+        private System.Windows.Forms.TextBox nickname_edit_textBox;
+        private System.Windows.Forms.Label status_edit_label;
+        private System.Windows.Forms.Label application_edit_label;
+        private System.Windows.Forms.Label group_edit_label;
+        private System.Windows.Forms.Label nickname_edit_label;
+        private System.Windows.Forms.Label server_edit_label;
+    }
+}

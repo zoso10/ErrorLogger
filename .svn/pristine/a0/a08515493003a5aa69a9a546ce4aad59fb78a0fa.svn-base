@@ -1,0 +1,212 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Net.NetworkInformation;
+
+namespace ErrorLoggerFrontEnd
+{
+    public partial class EditAdd_Servers : Form
+    {
+        #region Member Fields
+        public List<String> Servers { get; set; }
+        public int Additions { get; set; }
+        public int Edits { get; set; }
+        public string Message { get; set; }
+        public string customMessage { get; set; }
+        #endregion
+
+
+        #region Constructor
+        public EditAdd_Servers(int tabIndex, List<String> servers)
+        {
+            InitializeComponent();
+            this.Servers = servers;
+            Additions = 0;
+            Edits = 0;
+            edit_add_tabControl.SelectedIndex = tabIndex;
+            refreshComboBox();
+            add_button.Enabled = false;
+            ping_button.Enabled = false;
+            apply_button.Enabled = false;
+            delete_button.Enabled = false;
+        }
+        #endregion
+
+
+        #region Create Message
+        private void CreateMessage()
+        {
+            Message = string.Empty;
+            Message += Additions + (Additions == 1 ? " server added and " : " servers added and ");
+            Message += Edits + (Edits == 1 ? " server edited" : " servers edited");
+        }
+        #endregion
+
+
+        #region Button Activations
+        private void server_name_add_textBox_TextChanged(object sender, EventArgs e)
+        {
+            if (server_name_add_textBox.Text == string.Empty)
+            {
+                add_button.Enabled = false;
+                ping_button.Enabled = false;
+            }
+            else
+            {
+                add_button.Enabled = true;
+                ping_button.Enabled = true;
+            }
+        }
+
+        private void server_edit_comboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (server_edit_comboBox.Text == string.Empty)
+            {
+                delete_button.Enabled = false;
+                apply_button.Enabled = false;
+            }
+            else
+            {
+                delete_button.Enabled = true;
+                apply_button.Enabled = true;
+            }
+        }
+        #endregion
+
+
+        #region Button Clicks
+        private void ok_button_Click(object sender, EventArgs e)
+        {
+            // OK Button
+            if (server_name_add_textBox.Text.ToUpper() != string.Empty && !isDuplicate(server_name_add_textBox.Text.ToUpper()))
+            {
+                Servers.Add(server_name_add_textBox.Text.ToUpper());
+                ++Additions;
+            }
+            customMessage += nickname_add_textBox.Text + "\n" + application_add_textBox.Text + "\n" + group_add_textBox.Text;
+            this.Close();
+        }
+
+        private void cancel_button_Click(object sender, EventArgs e)
+        {
+            // Cancel Button
+            this.Close();
+        }
+
+        private void ping_button_Click(object sender, EventArgs e)
+        {
+            // Ping server Button
+            status_add_message.Text = "Pinging server...";
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                Ping p = new Ping();
+                PingReply r = p.Send(server_name_add_textBox.Text.ToUpper(), 3000);
+                if (r.Status == IPStatus.Success) { }
+                    status_add_message.Text = "[" + server_name_add_textBox.Text.ToUpper() + "] is alive";
+            }
+            catch
+            {
+                status_add_message.Text = "[" + server_name_add_textBox.Text.ToUpper() + "] did not respond";
+            }
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void add_button_Click(object sender, EventArgs e)
+        {
+            // Add server button
+            if (!isDuplicate(server_name_add_textBox.Text.ToUpper()) && server_name_add_textBox.Text != string.Empty)
+            {
+                Servers.Add(server_name_add_textBox.Text.ToUpper());
+                customMessage += nickname_add_textBox.Text + "\n" + application_add_textBox.Text + "\n" + group_add_textBox.Text;
+                status_add_message.Text = "[" + server_name_add_textBox.Text.ToUpper() + "] was added";
+                ++Additions;
+                server_name_add_textBox.Clear();
+                nickname_add_textBox.Clear();
+                group_add_textBox.Clear();
+                application_add_textBox.Clear();
+                refreshComboBox();
+            }
+            else
+            {
+                status_add_message.Text = "[" + server_name_add_textBox.Text.ToUpper() + "] is a duplicate and was not added";
+            }
+        }
+
+        private void delete_button_Click(object sender, EventArgs e)
+        {
+            // Delete server button
+            if (Servers.Remove(server_edit_comboBox.Text.ToUpper()))
+                status_edit_message.Text = "[" + server_edit_comboBox.Text.ToUpper() + "] has been deleted";
+            else
+                status_edit_message.Text = "[" + server_edit_comboBox.Text.ToUpper() + "] has been deleted";
+            refreshComboBox();
+            server_edit_comboBox.Text = string.Empty;
+            ++Edits;
+        }
+
+        private void apply_button_Click(object sender, EventArgs e)
+        {
+            // Apply settings to server button
+            status_edit_message.Text = "[" + server_edit_comboBox.Text.ToUpper() + "] was edited";
+            ++Edits;
+        }
+        #endregion
+
+
+        #region Return Key Press for Click
+        private void server_name_add_textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Hit the Enter instead of having to click Add
+            if (e.KeyCode == Keys.Return)
+                add_button.PerformClick();
+        }
+
+        private void server_edit_comboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+                apply_button.PerformClick();
+        }
+        #endregion
+
+
+        #region Duplicate Check and ComboBox Refresh
+        private bool isDuplicate(string newServer)
+        {
+            bool result = false;
+
+            Servers.ForEach(delegate(String s)
+            {
+                if (s == newServer)
+                    result = true;
+            });
+            return result;
+        }
+
+        private void refreshComboBox()
+        {
+            server_edit_comboBox.Items.Clear();
+            Servers.Sort();
+
+            Servers.ForEach(delegate(string s)
+            {
+                server_edit_comboBox.Items.Add(s);
+            });
+        }
+        #endregion
+
+
+        #region Form Closing
+        private void EditAdd_Servers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CreateMessage();
+        }
+        #endregion
+    }
+}

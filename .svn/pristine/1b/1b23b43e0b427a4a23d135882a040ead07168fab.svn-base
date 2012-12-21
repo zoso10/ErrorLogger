@@ -1,0 +1,447 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml;
+using System.Net.NetworkInformation;
+using System.IO;
+using Lord.ActiveDirectoryTools;
+
+
+namespace ErrorLoggerFrontEnd
+{
+    public partial class Form1 : Form
+    {
+        #region Member Fields
+        private bool isApplied;
+        private List<String> servers;
+        private CheckBox[] checkBoxes;
+        private const string DIRNAME = "ErrorLogger";
+        #endregion
+
+
+        #region Constructor
+        public Form1()
+        {
+            InitializeComponent();
+            servers = new List<string>();
+            add_user_button.Enabled = false;
+            remove_user_button.Enabled = false;
+            isApplied = false;
+            checkBoxes = new CheckBox[3] {application_checkBox, security_checkBox, system_checkBox};
+            RefreshComboBox();
+        }
+        #endregion
+
+
+        #region Button Activations
+        private void recipients_listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (recipients_listView.SelectedItems.Count == 0)
+                remove_user_button.Enabled = false;
+            else
+                remove_user_button.Enabled = true;
+        }
+
+        private void username_textBox_TextChanged(object sender, EventArgs e)
+        {
+            if (username_textBox.Text == string.Empty)
+                add_user_button.Enabled = false;
+            else
+                add_user_button.Enabled = true;
+        }
+        #endregion
+
+
+        #region Button Clicks
+        private void apply_button_Click(object sender, EventArgs e)
+        {
+            // Creates the XML config file and pushes it to the server
+            CreateConfigFile();
+            SendConfigFile();
+        }
+
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            // Clear the form
+            recipients_listView.Clear();
+            customMessage_textBox.Text = string.Empty;
+            username_textBox.Text = string.Empty;
+        }
+
+        private void remove_user_button_Click(object sender, EventArgs e)
+        {
+            // Removes a user from the Recipients list
+            if (recipients_listView.SelectedItems.Count == 0)
+                status_message.Text = "Please select a user from the list to remove";
+            else
+                recipients_listView.SelectedItems[0].Remove();
+        }
+
+        private void add_user_button_Click(object sender, EventArgs e)
+        {
+            // Checks AD if the user is valid
+            // then adds the user's email to recipients List
+            ADManager ad = new ADManager(LordDomains.LORD);
+            ADUser user = ad.GetUserByAccountName(username_textBox.Text);
+
+            if (user != null)
+            {
+                recipients_listView.Items.Add(user.Email);
+                status_message.Text = string.Empty;
+            }
+
+            else
+            {
+                // This is really junky
+                // I wanted something that would hopefully catch the users attention
+                // and this is the only way I know how to make it "flash"
+                //status_message.Text = string.Empty;
+                //Thread.Sleep(23);
+                status_message.Text = "That username does not exist in AD";
+            }
+        }
+
+        private void username_textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Who actually clicks buttons with the mouse these days?
+            if (e.KeyCode == Keys.Return && username_textBox.Text != string.Empty)
+                add_user_button.PerformClick();
+        }
+        #endregion
+
+
+        #region MenuBar Actions
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // About the application
+            MessageBox.Show("Server Error Event Log Control Panel\nCreated by Super Fellow Intern Tyler Ewing", "About");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Exit the application
+            this.Close();
+        }
+
+        private void addServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Opens up an EditAdd Servers form with the Add Servers tab selected
+            this.Cursor = Cursors.WaitCursor;
+            EditAdd_Servers f2 = new EditAdd_Servers(0, servers);
+            f2.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            f2.ShowDialog();
+            this.Cursor = Cursors.Default;
+            servers = f2.Servers;
+            RefreshComboBox();
+            customMessage_textBox.Text = f2.customMessage;
+            status_message.Text = f2.Message;
+            Refresh();
+        }
+
+        private void editServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Opens up an EditAdd Servers form with the Edit Servers tab selected
+            this.Cursor = Cursors.WaitCursor;
+            EditAdd_Servers f2 = new EditAdd_Servers(1, servers);
+            f2.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            f2.ShowDialog();
+            this.Cursor = Cursors.Default;
+            servers = f2.Servers;
+            RefreshComboBox();
+            customMessage_textBox.Text = f2.customMessage;
+            status_message.Text = f2.Message;
+            Refresh();
+        }
+
+        private void getHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Dialing 911...", "Call for Help");
+        }
+        #endregion
+
+
+        #region Making XML Files
+        private void CreateConfigFile()
+        {
+            // creates the XML config file and returns a string path to it
+            XmlTextWriter configFile = new XmlTextWriter("configFile.xml", null);
+            configFile.WriteStartDocument();
+
+            // Just some boring comments in the XML config file
+            configFile.WriteComment("Configuration File for Error Event Logger Console and Service Application");
+            configFile.WriteComment("Created by: Super Fellow Intern Tyler Ewing");
+            configFile.WriteStartElement("Config");
+
+            // Put the emails in tags
+            foreach (ListViewItem i in recipients_listView.Items)
+            {
+                configFile.WriteStartElement("Recipients");
+                configFile.WriteString(i.Text);
+                configFile.WriteEndElement();
+            }
+
+            // Put the different logs selected in tags
+            foreach (CheckBox c in checkBoxes)
+            {
+                if (c.Checked)
+                {
+                    configFile.WriteStartElement("Log");
+                    configFile.WriteString(c.Text);
+                    configFile.WriteEndElement();
+                }
+            }
+
+            // Put the server in a tag
+            configFile.WriteStartElement("Server");
+            configFile.WriteString(servers_comboBox.Text);
+            configFile.WriteEndElement();
+
+            // Put the custom message in a tag
+            configFile.WriteStartElement("Message");
+            configFile.WriteString(customMessage_textBox.Text);
+            configFile.WriteEndElement();
+
+            // I need to make more custom attributes n' stuff here
+
+            // Close it up
+            configFile.WriteEndElement();
+            configFile.WriteEndDocument();
+            configFile.Close();
+        }
+
+        private void CreateServersFile()
+        {
+            // creates the XML servers file and returns a string path to it
+            XmlTextWriter newServers = new XmlTextWriter("servers.xml", null);
+            newServers.WriteStartDocument();
+
+            // Just some boring comments in the XML server file
+            newServers.WriteComment("Servers XML file used to populate the drop down box in the Error Logger FrontEnd");
+            newServers.WriteComment("Created by: Super Fellow Intern Tyler Ewing");
+            newServers.WriteStartElement("Servers");
+
+            // Put the servers in a tag
+            servers.ForEach(delegate(String server)
+            {
+                newServers.WriteStartElement("ServerName");
+                newServers.WriteString(server);
+                newServers.WriteEndElement();
+            });
+
+            // Close it up
+            newServers.WriteEndElement();
+            newServers.WriteEndDocument();
+            newServers.Close();
+        }
+        #endregion
+
+
+        #region Ping
+        private bool PingServer(string server, int timeout)
+        {
+            // Pings the specified server with the specified timeout 
+            // Returns a bool based on succcess
+            Ping p = new Ping();
+            PingReply reply = null;
+            try
+            {
+                reply = p.Send(server, timeout);
+            }
+            catch { }
+
+            return reply.Status == IPStatus.Success ? true : false;
+        }
+        #endregion
+
+
+        #region Send Config File
+        private void SendConfigFile()
+        {
+            // Sends the config file and changes 'isApplied' based on the success
+            string serverPath = "\\\\" + servers_comboBox.Text + "\\" + DIRNAME;
+            string fullPath = serverPath + "\\config.xml";
+
+            // Check to see if server is alive
+            if (!PingServer(servers_comboBox.Text, 3000))
+            {
+                status_message.Text = "Server not found, send failed";
+                isApplied = false;
+                //return;
+            }
+
+            else
+            {
+                if (Directory.Exists(serverPath))
+                {
+                    try
+                    {
+                        using (Stream inStream = File.Open("configFile.xml", FileMode.Open))
+                        {
+                            using (Stream outStream = File.Create(fullPath))
+                            {
+                                while (inStream.Position < inStream.Length)
+                                {
+                                    outStream.WriteByte((byte)inStream.ReadByte());
+                                }
+                            }
+                        }
+
+                        // Check to see if it transferred correctly
+                        if (File.Exists(fullPath))
+                        {
+                            status_message.Text = "Settings applied and sent successfully";
+                            isApplied = true;
+                            // Delete the local config file created
+                            File.Delete("configFile.xml");
+                        }
+                    }
+                    catch
+                    {
+                        isApplied = false;
+                        status_message.Text = "Problem pushing config file to server, try again";
+                    }
+                }
+                else
+                {
+                    isApplied = false;
+                    status_message.Text = "Check to make sure there is write permissions";
+                }
+            }
+        }
+        #endregion
+
+
+        #region ComboBox Actions and helping Methods
+        private void servers_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Grabs the XML config file form the remote server and fills out the fields
+            recipients_listView.Items.Clear();
+            username_textBox.Text = string.Empty;
+            customMessage_textBox.Text = string.Empty;
+            foreach (CheckBox c in checkBoxes)
+            {
+                c.Checked = false;
+            }
+            this.Cursor = Cursors.WaitCursor;
+            LoadConfigXML(servers_comboBox.Text);
+            this.Cursor = Cursors.Default;
+        }
+
+        private void RefreshComboBox()
+        {
+            // Refreshes the ComboBox Items according to the servers List
+            // If the List is empty it parses the servers XML file and fills the list then refreshes 
+            if (servers.Count == 0)
+                LoadServersXML();
+
+            servers.Sort();
+            servers_comboBox.Items.Clear();
+
+            servers.ForEach(delegate(string s)
+            {
+                servers_comboBox.Items.Add(s);
+            });
+
+            if (servers.Contains(Environment.MachineName))
+                servers_comboBox.SelectedIndex = servers.IndexOf(Environment.MachineName);
+            else { }
+                //servers_comboBox.SelectedIndex = 0;
+        }
+
+        private void LoadServersXML()
+        {
+            // Loads the servers XML file and fills the servers List
+            XmlDocument doc = new XmlDocument();
+
+            if (!File.Exists("servers.xml"))
+            {
+                servers.Add(Environment.MachineName);
+                CreateServersFile();
+            }
+            else
+            {
+                doc.Load("servers.xml");
+                XmlNodeList xnList = doc.SelectNodes("/Servers/ServerName");
+
+                foreach (XmlNode xn in xnList)
+                {
+                    servers.Add(xn.InnerText);
+                }
+            }
+        }
+        #endregion
+
+
+        #region Load Server XML
+        private void LoadConfigXML(string remoteServer)
+        {
+            // Loads the XML config file from the specified remote server and fills out the fields on the Form
+            XmlDocument doc = new XmlDocument();
+
+            try
+            {
+                doc.Load("\\\\" + remoteServer + "\\" + DIRNAME + "\\config.xml");
+                XmlNodeList xnList = doc.SelectNodes("/Config/Recipients");
+                foreach (XmlNode xn in xnList)
+                {
+                    recipients_listView.Items.Add(xn.InnerText);
+                }
+
+                xnList = doc.SelectNodes("/Config/Log");
+                foreach (XmlNode xn in xnList)
+                {
+                    switch (xn.InnerText.Trim())
+                    {
+                        case "Application":
+                            application_checkBox.Checked = true;
+                            break;
+                        case "System":
+                            system_checkBox.Checked = true;
+                            break;
+                        case "Security":
+                            security_checkBox.Checked = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                xnList = doc.SelectNodes("/Config/Message");
+                customMessage_textBox.Text = xnList[0].InnerText;
+                status_message.Text = "Config file loaded, settings not applied";
+
+                
+
+            }
+            catch
+            {
+                status_message.Text = "Could not load config file, may need to install Error Logger";
+            }
+        }
+        #endregion
+
+
+        #region Application Closing
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CreateServersFile();
+
+            if (isApplied)
+                return;
+            else
+            {
+                DialogResult r = MessageBox.Show("You haven't applied the settings.  Do you still want to exit?", "Warning", MessageBoxButtons.YesNo);
+                if (r == System.Windows.Forms.DialogResult.Yes)
+                    return;
+                else
+                    e.Cancel = true;
+            }
+        }
+        #endregion
+    }
+}
